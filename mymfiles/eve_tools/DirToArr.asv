@@ -1,0 +1,23 @@
+function [arr_name,sz]=DirToArr(read_dir, modif)
+%DirToArr sends dir search output to matlab array variable
+
+
+g=dir([read_dir filesep modif]);
+S=size(g);
+arr_name=[];
+
+MSL=300;
+
+for i=1:S(1)
+    C=g(i).name;
+    arr_name=[arr_name; [read_dir filesep C blanks(MSL-length(C))]];
+end
+
+sz=S(1);
+
+disp([int2str
+
+return;
+
+end
+

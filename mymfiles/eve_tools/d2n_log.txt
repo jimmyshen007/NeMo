@@ -1,0 +1,13 @@
+Chris Rorden's dcm2nii :: April 13 2011 (Debian)
+reading preferences file /home/eve/.dcm2nii/dcm2nii.ini
+0 ERROR: unable to find /home/eve/Documents/MATLAB/t2_dcm2nii.ini
+Data will be exported to /home/eve/Documents/T2_DCM/mr15e28158_MR
+Validating 1870 potential DICOM images.
+dcm Error: not a DICOM image: /home/eve/Documents/T2_DCM/mr15e28158_MR/Normalized/w20120102_142705TDN20111030T2BRAIN2s007a1001_01.img
+Found 1848 DICOM images.
+Converting 588/1848  21
+E28158S00007I00001.MR->20120102_142705TDN20111030T2BRAIN2s007a1001A.nii
+GZip...20120102_142705TDN20111030T2BRAIN2s007a1001A.nii.gz
+Converting 1848/1848  21
+E28158S00008I00001.MR->20120102_142705TDN20111030T2BRAIN2s008a1001A.nii
+GZip...20120102_142705TDN20111030T2BRAIN2s008a1001A.nii.gz
