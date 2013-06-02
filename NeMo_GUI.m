@@ -1034,7 +1034,13 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbuttonV (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    global dispvar disptype barplotoption atlas outputtype saveFolder
+    global dispvar disptype barplotoption atlas outputtype saveFolder damagefile
+    if isnumeric(saveFolder)
+        if get(handles.checkbox_saveResultDefault, 'Value')
+            [fp, fn, ext] = fileparts(damagefile);
+            saveFolder = [fp filesep 'default_output'];
+        end
+    end
     if exist([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI.mat'], 'file')
         commPlot.flag = 1;
         switch disptype(1)
