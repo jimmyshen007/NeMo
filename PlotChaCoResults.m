@@ -108,9 +108,9 @@ if BoxPlot.flag == 1
 end
 if GraphPlot.flag == 1
     if GraphPlot.Global == 1;
-        load(['Tractograms' filesep 'FiberTracts' num2str(atsz) '_MNI' filesep 'AllConnMatrices' num2str(atsz) '_FT_MNI' filesep 'nGraphMets' num2str(atsz) '_MNI']);
+        load(['Tractograms' filesep 'FiberTracts' num2str(atsz) '_MNI_BIN' filesep 'AllConnMatrices' num2str(atsz) '_FT_MNI' filesep 'nGraphMets' num2str(atsz) '_MNI']);
         netmet = [];
-        nemtmet_NC = [];
+        netmet_NC = [];
         for i = 2:length(ChaCoResults);
             netmet(i-1,:) = ChaCoResults(i).nConMatMets;
             netmet_NC(i-1,:) = ChaCoResults(i).OrigMat.nMetsMapTFC;
@@ -124,7 +124,7 @@ if GraphPlot.flag == 1
         subplot(1,2,1)
         title('Charactaristic Path Length','FontSize',16)
         hold on
-        boxplot([netmet_NC(:,1), netmet(:,1)],'colors','br','labels',{'Normal Controls','Patient'})
+        boxplot([netmet_NC(:,1) netmet(:,1)],'colors','br','labels',{'Normal Controls','Patient'})
         hold on;
         plot(2,netmetm(1),'r.','MarkerSize',24)
         hold on
@@ -132,12 +132,12 @@ if GraphPlot.flag == 1
         hold on
         legend({'Mean Patient Matrix','Mean NC Matrix'},'Location','SouthWest','FontSize',12)
         hold on;
-        ylim([1525 max(netmet(:,1))+25])
+        ylim([min(min(netmet_NC(:,1)), min(netmet(:,1)))-25 max(max(netmet_NC(:, 1)), max(netmet(:,1)))+25])
         hold off;
         subplot(1,2,2)
         title('Efficiency','FontSize',16)
         hold on
-        boxplot([netmet_NC(:,2), netmet(:,2)],'colors','br','labels',{'Normal Controls','Patient'})
+        boxplot([netmet_NC(:,2) netmet(:,2)],'colors','br','labels',{'Normal Controls','Patient'})
         hold on;
         plot(2,netmetm(2),'r.','MarkerSize',24)
         hold on
@@ -145,7 +145,7 @@ if GraphPlot.flag == 1
         hold on
         legend({'Mean Patient Matrix','Mean NC Matrix'},'Location','SouthWest','FontSize',12)
         hold on;
-        ylim([min(8.5e-4,min(netmet(:,2))) 9.4e-4])
+        ylim([min(min(netmet_NC(:,2)), min(netmet(:,2)))-1e-3 max(max(netmet_NC(:, 2)), max(netmet(:,2)))+1e-3])
         hold off;
         I = getframe(gcf);
         imwrite(I.cdata, [pth filesep 'GraphMets_ConMat' strsave '.tif']);

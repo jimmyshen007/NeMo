@@ -59,8 +59,9 @@ global dispvar disptype sMRItype atlas outputtype damagefile saveFolder referenc
 damagefile = 0;
 saveFolder = 0;
 referenceFile = 0;
-if
-addpath(genpath(['mymfiles' filesep 'spm8']));
+if ~(ismcc() || isdeployed())
+    addpath(genpath(['mymfiles' filesep 'spm8']));
+end
 % Choose default command line output for NeMo_GUI
 handles.output = hObject;
 
@@ -237,6 +238,10 @@ function pushbutton1_Callback(hObject, eventdata, handles)
                                             SurfPlot.flag = 0; 
                                             BoxPlot = commPlot;
                                             GraphPlot.flag = 0;
+                                            switch barplotoption
+                                                case 
+                                                otherwise
+                                            end
                                         case 4
                                             GBPlot.flag = 0;
                                             SurfPlot.flag = 0;

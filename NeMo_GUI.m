@@ -236,8 +236,17 @@ function pushbutton1_Callback(hObject, eventdata, handles)
                                         case 3
                                             GBPlot.flag = 0;
                                             SurfPlot.flag = 0; 
-                                            BoxPlot = commPlot;
-                                            GraphPlot.flag = 0;
+                                            GraphPlot.flag = 0;       
+                                            if barplotoption(2)
+                                                GraphPlot.flag = 1;
+                                                GraphPlot.Global = 1;
+                                                GraphPlot.Local.flag = 0;
+                                            end
+                                            if barplotoption(1)
+                                                BoxPlot = commPlot;
+                                            else
+                                                BoxPlot.flag = 0;
+                                            end
                                         case 4
                                             GBPlot.flag = 0;
                                             SurfPlot.flag = 0;
@@ -746,10 +755,12 @@ switch tmptag
     case 'radiobuttonGlass'
         set(handles.uipanelPar, 'visible', 'on');
         set(handles.uipanelBarplot, 'visible', 'off');
+        set(handles.radiobuttonLNM, 'Enable', 'on');
         outputtype = 1;
     case 'radiobuttonGummi'
         set(handles.uipanelPar, 'visible', 'on');
         set(handles.uipanelBarplot, 'visible', 'off');
+        set(handles.radiobuttonLNM, 'Enable', 'off');
         outputtype = 2;
     otherwise    
         set(handles.uipanelPar, 'visible', 'off');
@@ -1034,8 +1045,15 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbuttonV (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    global dispvar disptype barplotoption atlas outputtype saveFolder
+    global dispvar disptype barplotoption atlas outputtype saveFolder damagefile
+    if isnumeric(saveFolder)
+        if get(handles.checkbox_saveResultDefault, 'Value')
+            [fp, fn, ext] = fileparts(damagefile);
+            saveFolder = [fp filesep 'default_output'];
+        end
+    end
     if exist([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI.mat'], 'file')
+        set(handles.pushbuttonV, 'Enable', 'on');
         commPlot.flag = 1;
         switch disptype(1)
             case 1 
@@ -1047,6 +1065,7 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
             case 4
                 commPlot.PlotHemi = 'subcortical';
             otherwise
+
         end
         commPlot.movie = disptype(2);
         switch dispvar(1)
@@ -1095,8 +1114,6 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
 
         end
         commPlot.MAP = [];
-        commPlot.pMAP = [];
-        commPlot.nMAP = [];
         switch outputtype
             case 1
                 GBPlot = commPlot;
@@ -1112,13 +1129,22 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
                 BoxPlot.flag = 0;
                 GraphPlot = commPlot;
                 if GraphPlot.Global == 1
-                   GraphPlot.Global = 0;
+                    GraphPlot.Global = 0;
                 end
             case 3
                 GBPlot.flag = 0;
                 SurfPlot.flag = 0; 
-                BoxPlot = commPlot;
-                GraphPlot.flag = 0;
+                GraphPlot.flag = 0;       
+                if barplotoption(2)
+                    GraphPlot.flag = 1;
+                    GraphPlot.Global = 1;
+                    GraphPlot.Local.flag = 0;
+                end
+                if barplotoption(1)
+                    BoxPlot = commPlot;
+                else
+                    BoxPlot.flag = 0;
+                end
             case 4
                 GBPlot.flag = 0;
                 SurfPlot.flag = 0;
@@ -1130,7 +1156,7 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
         figsave = ['_' num2str(atlas) '_AD'];
         PlotChaCoResults([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'], GBPlot,SurfPlot,BoxPlot,GraphPlot, figsave, 1);
     else
-        set(hObject, 'Enable', 'off');
+        set(handles.pushbuttonV, 'Enable', 'off');
     end
 
 % --- Executes on button press in checkboxCC.
