@@ -154,43 +154,43 @@ if GraphPlot.flag == 1
         %figure;
         %imagesc(LoCoResults(1).nConMat)
         if GraphPlot.Local.DG==1
-            DEG = sum(LoCoResults(1).nConMat);
+            DEG = sum(ChaCoResults(1).nConMat);
             brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), DEG', [], lobes, 'GB_LocDeg',[],0,strsave)
         end
         if GraphPlot.Local.EF == 1
-            Eff = efficiency(LoCoResults(1).nConMat,1);
+            Eff = efficiency(ChaCoResults(1).nConMat,1);
             sEff = Eff-0.9*min(Eff(find(Eff)));
             sEff = sEff./max(sEff);
             sEff(find(sEff<0)) = 0;
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), sEff, [], lobes, 'GB_LocEff',[],0,strsave)
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), sEff, [], lobes, 'GB_LocEff',[],0,strsave)
         end
         if GraphPlot.Local.BC == 1
-            BCs = betweenness_wei(1./LoCoResults(1).nConMat);
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), BCs, [], lobes, 'GB_BetwCent',[],0,strsave)
+            BCs = betweenness_wei(1./ChaCoResults(1).nConMat);
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), BCs, [], lobes, 'GB_BetwCent',[],0,strsave)
            
         end
         if GraphPlot.Local.CP == 1
-            D=distance_wei(1./LoCoResults(1).nConMat);
+            D=distance_wei(1./ChaCoResults(1).nConMat);
             CPs = sum(D)';
             sCPs = CPs-0.9*min(CPs(find(CPs)));
             sCPs = sCPs./max(sCPs);
             sCPs(find(sCPs<0)) = 0;
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), sCPs, [], lobes, 'GB_AvShortPath',[],0,strsave)
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), sCPs, [], lobes, 'GB_AvShortPath',[],0,strsave)
         end
         if GraphPlot.Local.MD == 1
-            MD = modularity_und(LoCoResults(1).nConMat);
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), 0.5*ones(length(LoCoResults(1).nConMat),1), [], MD, 'GB_Modularity',[],0,strsave)
+            MD = modularity_und(ChaCoResults(1).nConMat);
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), 0.5*ones(length(ChaCoResults(1).nConMat),1), [], MD, 'GB_Modularity',[],0,strsave)
         end
         if GraphPlot.Local.EC == 1
             [~,~,Ecc,~,~] = charpath(D);
             sEcc = Ecc-0.9*min(Ecc(find(Ecc)));
             sEcc = sEcc./max(sEcc);
             sEcc(find(sEcc<0)) = 0;
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), sEcc, [], lobes, 'GB_Ecc',[],0,strsave)
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), sEcc, [], lobes, 'GB_Ecc',[],0,strsave)
         end
         if GraphPlot.Local.CC == 1 %clustering coefficient
-            CC=clustering_coef_wu(LoCoResults(1).nConMat);
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), CC, [], lobes, 'GB_ClustCoef',[],0,strsave)
+            CC=clustering_coef_wu(ChaCoResults(1).nConMat);
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), CC, [], lobes, 'GB_ClustCoef',[],0,strsave)
         end
     end
 end

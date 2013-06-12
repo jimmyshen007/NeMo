@@ -266,7 +266,7 @@ if strcmp(CalcSpace,'MNI') || strcmp(CalcSpace,'both')
     ChaCoResults = [sLoCo LoCoResults];
     
     All_LoCoMNI = [StrSave filesep 'ChaCo' num2str(atlassize) '_MNI'];
-    save(All_LoCoMNI,'ChaCoResults', 'LoCoResults');
+    save(All_LoCoMNI,'ChaCoResults');
     time_for_one_mask = toc
     
 end
