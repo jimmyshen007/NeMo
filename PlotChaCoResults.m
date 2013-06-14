@@ -155,7 +155,7 @@ if GraphPlot.flag == 1
         %imagesc(LoCoResults(1).nConMat)
         if GraphPlot.Local.DG==1
             DEG = sum(ChaCoResults(1).nConMat);
-            brain_network_ploting(pth,at, zeros(size(LoCoResults(1).nConMat)), DEG', [], lobes, 'GB_LocDeg',[],0,strsave)
+            brain_network_ploting(pth,at, zeros(size(ChaCoResults(1).nConMat)), DEG', [], lobes, 'GB_LocDeg',[],0,strsave)
         end
         if GraphPlot.Local.EF == 1
             Eff = efficiency(ChaCoResults(1).nConMat,1);
