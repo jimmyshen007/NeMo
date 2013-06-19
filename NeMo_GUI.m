@@ -256,7 +256,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
                                         otherwise
                                     end
                                     figsave = ['_' num2str(atlas) '_AD'];
-                                    PlotChaCoResults([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'], GBPlot,SurfPlot,BoxPlot,GraphPlot, figsave, 1);
+                                    %PlotChaCoResults([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'], GBPlot,SurfPlot,BoxPlot,GraphPlot, figsave, 1);
                                 else
                                     set(handles.pushbuttonV, 'Enable', 'off');
                                 end
