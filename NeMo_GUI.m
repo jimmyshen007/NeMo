@@ -1154,24 +1154,7 @@ function pushbuttonV_Callback(hObject, eventdata, handles)
             otherwise
         end
         figsave = ['_' num2str(atlas) '_AD'];
-        if GBPlot.flag || SurfPlot.flag || commPlot.Local.flag
-            fileIn.ChaCoResultsFile = [saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'];
-            fileIn.plotOutputOptions.SurfPlot = SurfPlot;
-            fileIn.plotOutputOptions.GraphPlot = GraphPlot;
-            fileIn.plotOutputOptions.GBPlot = GBPlot;
-            fileIn.plotOutputOptions.plotlobecolor = 1;
-            fileIn.plotOutputOptions.figstr = 'NeMo';
-            brainography_nemo_lite(fileIn);
-            SurfPlot.flag = 0;
-            GBPlot.flag = 0;
-            GraphPlot.Local.flag = 0;
-        end
-        %%%%%%%%%%%
-        if BoxPlot.flag || GraphPlot.Global
-            PlotChaCoResults([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'], GBPlot,SurfPlot,BoxPlot,GraphPlot, figsave, 1);
-        end
-
-        %PlotChaCoResults([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'], GBPlot,SurfPlot,BoxPlot,GraphPlot, figsave, 1);
+        PlotChaCoResults([saveFolder filesep 'ChaCo' num2str(atlas) '_MNI'], GBPlot,SurfPlot,BoxPlot,GraphPlot, figsave, 1);
     else
         set(handles.pushbuttonV, 'Enable', 'off');
     end
