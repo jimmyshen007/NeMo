@@ -348,7 +348,7 @@ function [sz] = getFileStat(filename)
                 sz = size(v);
             case '.nii'
                 v = spm_vol(filename);
-                sz = [v(1).dim length(v)];
+                sz = v(1).dim;
             case '.hdr'
                 v = spm_vol(filename);
                 sz = v(1).dim;
