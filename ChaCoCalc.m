@@ -304,7 +304,7 @@ for ii = 1:runl
         [WMi,WMj,WMk] = ind2sub(size(ROI_num),pix_in_ROI);        
         for k = 1:length(PathsROI)
             path_floor = floor(PathsROI(k).voxels);
-            intvox = intersect(path_floor',[WMi,WMj,WMk],'rows');
+            intvox = intersect(path_floor',[WMi,WMj,WMk],'rows', 'legacy');
             if  ~isempty(intvox)
                 Affect_zones = [Affect_zones; PathsROI(k).regions];
                 Affect_location = [Affect_location; PathsROI(k).location];
