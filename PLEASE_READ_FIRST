@@ -1,0 +1,7 @@
+NEMO TOOL 2.0 now available!
+
+We now have a new, improved version of the NeMo Tool. It is implemented through a website hosted on AWS, so there is no need to doanload any data or use Matlab.
+It contains 415 Human Connectome Project control subjects' tractography results, and has many new features for using different gray matter parcellations, and even
+allows voxel-wise ChaCo score output. Please see the website for more details. Happy lesioning!
+
+https://kuceyeski-wcm-web.s3.us-east-1.amazonaws.com/upload.html
